@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="globalCSS.css">
+</head>
+<body class="auth-screen">
+
+  <div class="auth-card">
+    <img src="logo.png" alt="Ride Together" class="app-logo">
+
+    <h1 class="auth-title">Bentornato</h1>
+    <p class="auth-subtitle">Accedi al tuo account per continuare</p>
+
+    <div class="auth-fields">
+      <div class="field-group">
+        <label class="field-label" for="email">Email</label>
+        <div class="field-wrap">
+          <input class="field-input no-icon" id="email" type="email" placeholder="nome@esempio.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Password</label>
+        <div class="field-wrap">
+          <input class="field-input" id="password" type="password" placeholder="••••••••" autocomplete="current-password">
+          <button class="toggle-pw" type="button" aria-label="Mostra password" onclick="togglePw('password', this)">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="auth-forgot"><a href="reset.html">Password dimenticata?</a></div>
+
+      <button class="btn-primary" onclick="window.location.href='login.html'">Accedi</button>
+    </div>
+
+    <p class="auth-footer">Non hai un account? <a href="register.html">Registrati</a></p>
+  </div>
+
+  <script>
+    function togglePw(id, btn) {
+      const input = document.getElementById(id);
+      const showing = input.type === 'text';
+      input.type = showing ? 'password' : 'text';
+      btn.setAttribute('aria-label', showing ? 'Mostra password' : 'Nascondi password');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="globalCSS.css">
+</head>
+<body class="auth-screen">
+
+  <div id="form-state" class="auth-card">
+    <img src="logo.png" alt="Ride Together" class="app-logo">
+
+    <h1 class="auth-title">Password dimenticata?</h1>
+    <p class="auth-subtitle">Inserisci la tua email e ti mandiamo<br>un link per reimpostare la password.</p>
+
+    <div class="auth-fields">
+      <div class="field-group">
+        <label class="field-label" for="email">Email</label>
+        <input class="field-input no-icon" id="email" type="email" placeholder="nome@esempio.com" autocomplete="email">
+      </div>
+      <button class="btn-primary" onclick="sendReset()">Invia link di reset</button>
+    </div>
+
+    <a class="auth-back" href="login.html">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Torna al login
+    </a>
+  </div>
+
+  <div class="success-box" id="success-state">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <p class="success-title">Email inviata!</p>
+    <p class="success-text">Controlla la tua casella di posta.<br>Il link scade tra 15 minuti.</p>
+    <a class="auth-back" href="login.html">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Torna al login
+    </a>
+  </div>
+
+  <script>
+    function sendReset() {
+      const email = document.getElementById('email').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('email').focus();
+        return;
+      }
+      document.getElementById('form-state').style.display = 'none';
+      const box = document.getElementById('success-state');
+      box.style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrazione</title>
+  <link rel="stylesheet" href="globalCSS.css">
+</head>
+<body class="auth-screen">
+
+  <div class="auth-card">
+    <img src="logo.png" alt="Ride Together" class="app-logo">
+    <h1 class="auth-title">Crea un account</h1>
+    <p class="auth-subtitle">Inizia subito, è gratis</p>
+
+    <div class="auth-fields">
+      <div class="field-group">
+        <label class="field-label" for="name">Nome completo</label>
+        <div class="field-wrap">
+          <input class="field-input no-icon" id="name" type="text" placeholder="Timber Lucco" autocomplete="name">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="email">Email</label>
+        <div class="field-wrap">
+          <input class="field-input no-icon" id="email" type="email" placeholder="nome@esempio.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Password</label>
+        <div class="field-wrap">
+          <input class="field-input" id="password" type="password" placeholder="Min. 8 caratteri" autocomplete="new-password" oninput="checkStrength(this.value)">
+          <button class="toggle-pw" type="button" aria-label="Mostra password" onclick="togglePw('password', this)">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="confirm">Conferma password</label>
+        <div class="field-wrap">
+          <input class="field-input" id="confirm" type="password" placeholder="••••••••" autocomplete="new-password">
+          <button class="toggle-pw" type="button" aria-label="Mostra password" onclick="togglePw('confirm', this)">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="checkbox-row">
+        <input class="checkbox-input" type="checkbox" id="terms">
+        <label class="checkbox-label" for="terms">
+          Accetto i <a href="#">Termini di servizio</a> e la <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button class="btn-primary" onclick="submitRegister()">Registrati</button>
+    </div>
+
+    <p class="auth-footer">Hai già un account? <a href="login.html">Accedi</a></p>
+  </div>
+
+  <script>
+    function togglePw(id, btn) {
+      const input = document.getElementById(id);
+      const showing = input.type === 'text';
+      input.type = showing ? 'password' : 'text';
+      btn.setAttribute('aria-label', showing ? 'Mostra password' : 'Nascondi password');
+    }
+
+    function checkStrength(val) {
+      const fill = document.getElementById('strength-fill');
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+      const widths = ['0%', '25%', '50%', '75%', '100%'];
+      const colors = ['#ef4444', '#f59e0b', '#f59e0b', '#a8ddb5', '#1e6650'];
+      fill.style.width = widths[score];
+      fill.style.background = colors[score] || '#c8e6d0';
+    }
+
+    function submitRegister() {
+      if (!document.getElementById('terms').checked) {
+        alert('Accetta i termini per continuare.');
+        return;
+      }
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
